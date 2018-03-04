@@ -57,31 +57,6 @@ public class Login extends AppCompatActivity implements View.OnKeyListener{
 
         EditText passwordText = (EditText) findViewById(R.id.Password_Field);
         passwordText.setOnKeyListener(this);
-
-        /*
-        login.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Code here executes on main thread after user presses button
-                Intent goToMain = new Intent(Login.this, Main_Screen_Admin.class);
-                Intent goToMain2 = new Intent(Login.this, Main_Screen.class);
-                if(isAdmin){
-                    startActivity(goToMain);
-                    String compID = "" + 1;
-                    String status = "New";
-                    String compDetails = "Testing Complaint";
-                    allComplaints = new ArrayList<Complaint>();
-
-                    //Toast.makeText(getApplicationContext(), compDetails,
-                    //      Toast.LENGTH_LONG).show();
-                    Complaint complaint = new Complaint(compID, status, compDetails);
-                    allComplaints.add(complaint);
-                    Login.temp.addComplaint(complaint);
-                    Login.temp.setNumComplaints(Login.temp.getNumComplaints()+1);
-                }
-                else{
-                    startActivity(goToMain2);
-                }
-                */
         mAuth = FirebaseAuth.getInstance();
 
         logInAuthListner = new FirebaseAuth.AuthStateListener() {
