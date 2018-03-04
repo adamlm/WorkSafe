@@ -5,6 +5,7 @@ import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
@@ -24,7 +25,7 @@ public class Main_Screen extends AppCompatActivity {
     Button options;
     Button newIssueBtn;
 
-    private List<String> List_file;
+    private ArrayList<String> List_file;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +35,6 @@ public class Main_Screen extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Issue Feed");
         toolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
-
 
         List_file = new ArrayList<String>();
         list = (ListView)findViewById(R.id.existingIssuesList);
@@ -87,14 +87,22 @@ public class Main_Screen extends AppCompatActivity {
             }
         });
 
-        this.CreateListView();
+        //this.CreateListView();
     }
     private void CreateListView()
     {
-        //Here is where we will connect to the data to retrieve old submitted issues
-        for(int i = 0; i < Login.temp.getNumComplaints(); i++){
-            List_file.add(Login.temp.getComplaint(i).getComplaintDetails() + "          " + Login.temp.getComplaint(i).getStatus());
-        }
+            //Here is where we will connect to the data to retrieve old submitted issues
+            for (int i = 0; i < Login.appUser.getComplaints().size(); i++) {
+
+                //List_file.add(Login.appUser.getComplaints().get(i).toString());
+                List_file.add("TEST");
+            }
+            //Create an adapter for the listView and add the ArrayList to the adapter.
+            //existingIssuesList
+
+
+        list.setAdapter(new ArrayAdapter<String>(Main_Screen.this, android.R.layout.simple_list_item_1, List_file));
+
         /*
         List_file.add("Coderzheaven           " + "In Progress" );
         List_file.add("Google");
@@ -113,8 +121,7 @@ public class Main_Screen extends AppCompatActivity {
         List_file.add("Apple");
         */
 
-        //Create an adapter for the listView and add the ArrayList to the adapter.
-        list.setAdapter(new ArrayAdapter<String>(Main_Screen.this, android.R.layout.simple_list_item_1,List_file));
+
         /*
         list.setOnItemClickListener(new OnItemClickListener()
         {

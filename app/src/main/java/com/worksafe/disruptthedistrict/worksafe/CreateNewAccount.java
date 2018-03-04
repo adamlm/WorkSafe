@@ -76,6 +76,12 @@ public class CreateNewAccount extends AppCompatActivity implements View.OnClickL
                 if (task.isSuccessful()) {
                     //User registration successful
                     //move to homepage
+                    Login.appUser = new User(System.currentTimeMillis(), name.toString(), name.toString(), email.toString(),
+                            password.toString(), false, null);
+
+                    DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
+                    database.child(Long.toString(Login.appUser.getUserId())).setValue(Login.appUser);
+
                     Toast.makeText(CreateNewAccount.this, "Registering...", Toast.LENGTH_LONG).show();
                     Intent registeredIntent = new Intent(CreateNewAccount.this, Main_Screen.class);
                     CreateNewAccount.this.startActivity(registeredIntent);
@@ -84,12 +90,6 @@ public class CreateNewAccount extends AppCompatActivity implements View.OnClickL
                 }
             }
         });
-
-        Login.appUser = new User(System.currentTimeMillis(), name.toString(), name.toString(), email.toString(),
-                password.toString(), false, null);
-
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
-        database.child(Long.toString(Login.appUser.getUserId())).setValue(Login.appUser);
     }
 
     public void onClick(View view) {

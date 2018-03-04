@@ -68,7 +68,7 @@ public class Main_Screen_Admin extends AppCompatActivity {
     {
         //Here is where we will connect to the data to retrieve old submitted issues
         for(int i = 0; i < Login.allComplaints.size(); i++){
-            List_file.add(Login.allComplaints.get(i).getComplaintDetails() + "          " + Login.temp.getComplaint(i).getStatus());
+            //List_file.add(Login.allComplaints.get(i).getComplaintDetails() + "          " + Login.temp.getComplaint(i).getStatus());
         }
         /*
         List_file.add("Coderzheaven           " + "In Progress" );

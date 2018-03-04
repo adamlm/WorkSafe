@@ -115,7 +115,7 @@ public class Login extends AppCompatActivity implements View.OnKeyListener{
                     } else {
                         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("user");
 
-                        Login.appUser = databaseReference.child(loginString);
+                        //Login.appUser = databaseReference.child(loginString);
                         Intent gotoMain = new Intent(Login.this, Main_Screen.class);
                         Login.this.startActivity(gotoMain);
                     }

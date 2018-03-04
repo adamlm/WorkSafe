@@ -84,7 +84,7 @@ public class User {
         this.m_complaints = _complaints;
     }
 
-    public void addComplain(final Complaint _complaint) {
+    public void addComplaint(final Complaint _complaint) {
         this.m_complaints.add(_complaint);
     }
 }

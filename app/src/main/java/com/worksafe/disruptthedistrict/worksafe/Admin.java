@@ -40,6 +40,6 @@ public class Admin {
         this.company = company;
     }
     public void updateIssueStatus(Complaint complaint, String status){
-        complaint.setStatus(status);
+        //complaint.setStatus(status);
     }
 }

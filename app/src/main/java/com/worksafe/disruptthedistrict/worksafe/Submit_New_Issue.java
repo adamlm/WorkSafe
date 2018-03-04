@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ public class Submit_New_Issue extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit__new__issue);
 
+        // Create toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Create New Issue");
@@ -27,19 +29,21 @@ public class Submit_New_Issue extends AppCompatActivity {
         toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.colorWhite),
                 PorterDuff.Mode.SRC_ATOP);
 
+        // Submit button
         Button button = (Button)findViewById(R.id.submit);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Code here executes on main thread after user presses button
+
+                boolean sexualAssault = ((CheckBox) findViewById(R.id.sexualAssaultBox)).isChecked();
+                boolean racialComments = ((CheckBox) findViewById(R.id.RacialCommentsBox)).isChecked();
+                boolean verbalAbuse = ((CheckBox) findViewById(R.id.VerbalAbuseBox)).isChecked();
+                boolean physicalAbuse = ((CheckBox) findViewById(R.id.PhysicalAbuseBox)).isChecked();
+                String details = ((EditText) findViewById(R.id.complaintComments)).getText().toString();
+
+                Complaint complaint = new Complaint(sexualAssault, racialComments, verbalAbuse, physicalAbuse, details);
+                Login.appUser.addComplaint(complaint);
+
                 Intent returnToMain = new Intent(Submit_New_Issue.this, Main_Screen.class);
-                String compID = "" + Login.temp.getNumComplaints();
-                String status = "New";
-                String compDetails = ((EditText)findViewById(R.id.complaintComments)).getText().toString();
-                Toast.makeText(getApplicationContext(), compDetails,
-                        Toast.LENGTH_LONG).show();
-                Complaint complaint = new Complaint(compID, status, compDetails);
-                Login.temp.addComplaint(complaint);
-                Login.temp.setNumComplaints(Login.temp.getNumComplaints()+1);
                 startActivity(returnToMain);
             }
         });
