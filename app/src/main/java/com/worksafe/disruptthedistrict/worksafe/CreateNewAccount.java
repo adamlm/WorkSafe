@@ -1,6 +1,8 @@
 package com.worksafe.disruptthedistrict.worksafe;
 
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,13 +13,16 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+
+
 public class CreateNewAccount extends AppCompatActivity {
     Button createNewAccount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_account);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Register Account");
@@ -56,7 +61,6 @@ public class CreateNewAccount extends AppCompatActivity {
         });
 
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
