@@ -1,7 +1,6 @@
 package com.worksafe.disruptthedistrict.worksafe;
 
 import android.content.Intent;
-<<<<<<< HEAD
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.graphics.PorterDuff;
@@ -61,9 +60,6 @@ public class CreateNewAccount extends AppCompatActivity {
         });
 
     }
-<<<<<<< HEAD
-=======
->>>>>>> 619ce9f1efd9931d6f8404e12128e95e72ba5ec0
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
