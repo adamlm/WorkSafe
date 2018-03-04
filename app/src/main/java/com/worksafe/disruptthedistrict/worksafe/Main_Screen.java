@@ -1,10 +1,14 @@
 package com.worksafe.disruptthedistrict.worksafe;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
+import android.widget.PopupMenu;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -15,35 +19,62 @@ public class Main_Screen extends AppCompatActivity {
     ListView list;
     Button settings;
     Button newIssue;
+    Toolbar toolbar;
 
+    Button options;
+    Button newIssueBtn;
 
     private List<String> List_file;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main__screen);
-        Button logout = (Button) findViewById(R.id.logoutBtn);
-        logout.setOnClickListener(new View.OnClickListener() {           //Sets an onClickListener to make button click for intent
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent myIntent = new Intent(Main_Screen.this, Login.class);
-                Main_Screen.this.startActivity(myIntent);
-            }
-        });
+
+        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Issue Feed");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
+
+
         List_file = new ArrayList<String>();
         list = (ListView)findViewById(R.id.existingIssuesList);
         CreateListView();
 
-        settings = (Button)findViewById(R.id.Settings_Button);
-        settings.setOnClickListener(new View.OnClickListener() {
+        options = (Button)findViewById(R.id.options_menu);
+        options.setOnClickListener(new View.OnClickListener() {
+
+            @Override
             public void onClick(View v) {
-                // Code here executes on main thread after user presses button
-                Intent goToSettings = new Intent(Main_Screen.this, Settings.class);
-                startActivity(goToSettings);
+                //Creating the instance of PopupMenu
+                PopupMenu popup = new PopupMenu(Main_Screen.this, options);
+                //Inflating the Popup using xml file
+                popup.getMenuInflater().inflate(R.menu.settings_menu, popup.getMenu());
+
+                //registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if(item.getTitle().toString().equals("Change Email")){
+                            Intent goChangeEmail = new Intent(Main_Screen.this, changeEmail.class);
+                            startActivity(goChangeEmail);
+                        }
+                        else if(item.getTitle().toString().equals("Change Password")){
+                            Intent goChangePassword = new Intent(Main_Screen.this, changePassword.class);
+                            startActivity(goChangePassword);
+                        }
+                        else if(item.getTitle().toString().equals("About")){
+                            Intent goAbout = new Intent(Main_Screen.this, about.class);
+                            startActivity(goAbout);
+                        }
+                        //Toast.makeText(Main_Screen.this,"You Clicked : " + item.getTitle(),Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                });
+
+                popup.show();//showing popup menu
             }
         });
 
-        newIssue = (Button)findViewById(R.id.New_Issue_Button);
+        newIssue = (Button)findViewById(R.id.new_issue_button);
         newIssue.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
@@ -51,6 +82,8 @@ public class Main_Screen extends AppCompatActivity {
                 startActivity(goToSettings);
             }
         });
+
+        this.CreateListView();
     }
     private void CreateListView()
     {
@@ -88,5 +121,10 @@ public class Main_Screen extends AppCompatActivity {
             }
         });
         */
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Do nothing
     }
 }

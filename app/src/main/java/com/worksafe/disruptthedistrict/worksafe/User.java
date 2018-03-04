@@ -6,16 +6,18 @@ package com.worksafe.disruptthedistrict.worksafe;
 
 public class User {
     private int m_userId;
+    private String m_firstName;
+    private String m_lastName;
     private String m_username;
     private String m_password;
     private boolean m_admin;
 
     public User() {
-        new User(0, "", "", false);
+        new User(0, "", "", "", "", false);
     }
 
-    public User(final int _userId, final String _username,
-                final String _password, final boolean _admin) {
+    public User(final int _userId, final String _firstName, final String _lastName,
+                final String _username, final String _password, final boolean _admin) {
         this.m_userId = _userId;
         this.m_username = _username;
         this.m_password = _password;
@@ -28,6 +30,22 @@ public class User {
 
     public void setUserId(final int _userId) {
         this.m_userId = _userId;
+    }
+
+    public String getFirstName() {
+        return this.m_firstName;
+    }
+
+    public void setFirstName(final String _firstName) {
+        this.m_firstName = _firstName;
+    }
+
+    public String getLastName() {
+        return this.m_lastName;
+    }
+
+    public void setLastName(final String _lastName) {
+        this.m_lastName = _lastName;
     }
 
     public String getUsername() {

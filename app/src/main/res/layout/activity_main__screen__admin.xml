@@ -4,52 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.worksafe.disruptthedistrict.worksafe.Main_Screen_Admin"
-    tools:layout_editor_absoluteY="81dp"
-    android:background="@drawable/gradient1">
-
-    <!-- Load the toolbar here -->
-    <include
-        layout="@layout/toolbar_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:id="@+id/Settings_Button_Admin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Settings"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.897"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.071" />
+    android:background="@drawable/gradient1"
+    tools:context="com.worksafe.disruptthedistrict.worksafe.Main_Screen"
+    tools:layout_editor_absoluteY="25dp">
 
     <RelativeLayout
-        android:id="@+id/RelativeLayout2"
-        android:layout_width="367dp"
-        android:layout_height="403dp"
+        android:id="@+id/relativeLayout_admin"
+        android:layout_width="372dp"
+        android:layout_height="489dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.851">
+        app:layout_constraintVertical_bias="0.913">
 
         <ListView
-            android:id="@+id/existingIssuesList2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/existingIssuesList_admin"
+            android:layout_width="fill_parent"
+            android:layout_height="200dip"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_gravity="fill_vertical"
-            android:layout_marginBottom="49dp"
-            android:scrollbars="vertical"
-            tools:layout_editor_absoluteX="9dp"
-            tools:layout_editor_absoluteY="88dp"></ListView>
+            android:scrollbars="vertical"></ListView>
     </RelativeLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/options_menu_admin"
+        android:layout_width="43dp"
+        android:layout_height="52dp"
+        android:background="@drawable/ic_list_black_18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.973"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

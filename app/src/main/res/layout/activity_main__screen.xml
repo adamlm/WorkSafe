@@ -5,50 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient1"
-    tools:context="com.worksafe.disruptthedistrict.worksafe.Main_Screen">
-
-    <!-- Load the toolbar here -->
-    <include
-        layout="@layout/toolbar_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:id="@+id/New_Issue_Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="19dp"
-        android:layout_marginTop="41dp"
-        android:text="Submit New Issue"
-        app:layout_constraintEnd_toStartOf="@+id/Settings_Button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/Settings_Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="62dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginTop="41dp"
-        android:text="Settings"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/New_Issue_Button"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context="com.worksafe.disruptthedistrict.worksafe.Main_Screen"
+    tools:layout_editor_absoluteY="25dp">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="35dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginStart="6dp"
+        android:layout_width="372dp"
+        android:layout_height="489dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Settings_Button">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.913">
 
         <ListView
             android:id="@+id/existingIssuesList"
@@ -60,16 +29,45 @@
             android:scrollbars="vertical"></ListView>
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/logoutBtn"
-        android:layout_width="82dp"
-        android:layout_height="34dp"
-        android:text="Log out"
-        android:textSize="12sp"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.979"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.006" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/options_menu"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="1dp"
+        android:background="@mipmap/ic_menu_white_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.973"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.00999999" />
+
+    <Button
+        android:id="@+id/new_issue_button"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="20dp"
+        android:background="@mipmap/ic_add_circle_outline_white_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.825"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.00999999" />
+
 </android.support.constraint.ConstraintLayout>
