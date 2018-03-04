@@ -13,11 +13,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 import java.util.ArrayList;
 
 public class Login extends AppCompatActivity implements View.OnKeyListener{
+    static User appUser;
+
     Button login;
     boolean isAdmin = false;
     public static Employee temp = new Employee("KY","ky@google.com", "ky123","kyinc");
@@ -38,6 +42,8 @@ public class Login extends AppCompatActivity implements View.OnKeyListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        FirebaseAuth.getInstance().signOut();
 
         loginString = (EditText) findViewById(R.id.Email_field);
         passwordString = (EditText) findViewById(R.id.Password_Field);
@@ -93,7 +99,7 @@ public class Login extends AppCompatActivity implements View.OnKeyListener{
     }
 
     private void startSignIn() {
-        String loginString2 = loginString.getText().toString();;
+        final String loginString2 = loginString.getText().toString();;
         //User user = new User(0,"","", true);
         //user.setUsername = loginString.getText().toString();
         String passwordString2 = passwordString.getText().toString();;
@@ -107,6 +113,9 @@ public class Login extends AppCompatActivity implements View.OnKeyListener{
                     if (!task.isSuccessful()) {
                         Toast.makeText(Login.this, "Sign in Problem", Toast.LENGTH_LONG).show();
                     } else {
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("user");
+
+                        Login.appUser = databaseReference.child(loginString);
                         Intent gotoMain = new Intent(Login.this, Main_Screen.class);
                         Login.this.startActivity(gotoMain);
                     }

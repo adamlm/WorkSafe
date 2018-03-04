@@ -64,6 +64,10 @@ public class Main_Screen extends AppCompatActivity {
                         else if(item.getTitle().toString().equals("About")){
                             Intent goAbout = new Intent(Main_Screen.this, about.class);
                             startActivity(goAbout);
+                        } else if(item.getTitle().toString().equals("Logout")){
+                            FirebaseAuth.getInstance().signOut();
+                            Intent gologin = new Intent(Main_Screen.this, Login.class);
+                            startActivity(gologin);
                         }
                         //Toast.makeText(Main_Screen.this,"You Clicked : " + item.getTitle(),Toast.LENGTH_SHORT).show();
                         return true;

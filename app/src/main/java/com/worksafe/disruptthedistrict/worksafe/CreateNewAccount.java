@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -22,11 +23,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class CreateNewAccount extends AppCompatActivity implements View.OnClickListener {
-    ImageButton createNewAccount;
+    Button createNewAccount;
     private EditText email;
     private EditText name;
     private EditText password;
@@ -49,7 +54,7 @@ public class CreateNewAccount extends AppCompatActivity implements View.OnClickL
         name = ((EditText)findViewById(R.id.newAcc_Name));
         email = ((EditText)findViewById(R.id.newAcc_Email));
         password = ((EditText)findViewById(R.id.newAcc_Password));
-        createNewAccount = (ImageButton)findViewById(R.id.register_butt);
+        createNewAccount = (Button)findViewById(R.id.register_butt);
         createNewAccount.setOnClickListener(this);
 
 
@@ -72,13 +77,19 @@ public class CreateNewAccount extends AppCompatActivity implements View.OnClickL
                     //User registration successful
                     //move to homepage
                     Toast.makeText(CreateNewAccount.this, "Registering...", Toast.LENGTH_LONG).show();
-                    Intent registeredIntent = new Intent(CreateNewAccount.this, Login.class);
+                    Intent registeredIntent = new Intent(CreateNewAccount.this, Main_Screen.class);
                     CreateNewAccount.this.startActivity(registeredIntent);
                 } else {
                     Toast.makeText(CreateNewAccount.this, "Could not register, please try again.", Toast.LENGTH_LONG).show();
                 }
             }
         });
+
+        Login.appUser = new User(System.currentTimeMillis(), name.toString(), name.toString(), email.toString(),
+                password.toString(), false, null);
+
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
+        database.child(Long.toString(Login.appUser.getUserId())).setValue(Login.appUser);
     }
 
     public void onClick(View view) {
