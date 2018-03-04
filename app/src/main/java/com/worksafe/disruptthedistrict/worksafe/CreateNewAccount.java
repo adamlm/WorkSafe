@@ -4,30 +4,34 @@ import android.content.Intent;
 <<<<<<< HEAD
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-=======
->>>>>>> 619ce9f1efd9931d6f8404e12128e95e72ba5ec0
+import android.graphics.PorterDuff;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-<<<<<<< HEAD
 
 import com.google.firebase.auth.FirebaseAuth;
 
+
+
 public class CreateNewAccount extends AppCompatActivity {
     Button createNewAccount;
-    private FirebaseAuth auth;
-
-=======
->>>>>>> 619ce9f1efd9931d6f8404e12128e95e72ba5ec0
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_account);
-<<<<<<< HEAD
-        auth = FirebaseAuth.getInstance();
-=======
->>>>>>> 619ce9f1efd9931d6f8404e12128e95e72ba5ec0
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.colorWhite),
+                PorterDuff.Mode.SRC_ATOP);
+
         createNewAccount = (Button)findViewById(R.id.newAccountButton);
         createNewAccount.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -60,4 +64,15 @@ public class CreateNewAccount extends AppCompatActivity {
 <<<<<<< HEAD
 =======
 >>>>>>> 619ce9f1efd9931d6f8404e12128e95e72ba5ec0
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }
