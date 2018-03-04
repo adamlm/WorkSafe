@@ -8,6 +8,12 @@
     tools:layout_editor_absoluteY="81dp"
     android:background="@drawable/gradient1">
 
+    <!-- Load the toolbar here -->
+    <include
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <Button
         android:id="@+id/Settings_Button_Admin"
         android:layout_width="wrap_content"

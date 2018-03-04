@@ -7,6 +7,12 @@
     tools:context="com.worksafe.disruptthedistrict.worksafe.Main_Screen"
     android:background="@drawable/gradient1">
 
+    <!-- Load the toolbar here -->
+    <include
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <Button
         android:id="@+id/New_Issue_Button"
         android:layout_width="wrap_content"

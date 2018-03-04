@@ -7,6 +7,12 @@
     tools:context="com.worksafe.disruptthedistrict.worksafe.changeEmail"
     android:background="@drawable/gradient1">
 
+    <!-- Load the toolbar here -->
+    <include
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <EditText
         android:id="@+id/currentEmailField"
         android:layout_width="wrap_content"

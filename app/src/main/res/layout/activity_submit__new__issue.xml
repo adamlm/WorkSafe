@@ -8,6 +8,12 @@
     tools:context="com.worksafe.disruptthedistrict.worksafe.Submit_New_Issue"
     tools:layout_editor_absoluteY="81dp">
 
+    <!-- Load the toolbar here -->
+    <include
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <TextView
         android:id="@+id/newIssueText"
         android:layout_width="wrap_content"
