@@ -5,9 +5,10 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.*;
 import android.view.*;
-
+import android.view.inputmethod.EditorInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -16,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity implements View.OnKeyListener{
     Button login;
     boolean isAdmin = false;
     public static Employee temp = new Employee("KY","ky@google.com", "ky123","kyinc");
@@ -40,9 +41,22 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        loginString= (EditText) findViewById(R.id.Email_field);
+
+        loginString = (EditText) findViewById(R.id.Email_field);
         passwordString = (EditText) findViewById(R.id.Password_Field);
-        login = (Button)findViewById(R.id.Login_button);
+        //login = (Button)findViewById(R.id.Login_button);
+
+        TextView register = (TextView) findViewById(R.id.registerAccountText);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent gotoRegister = new Intent(Login.this, CreateNewAccount.class);
+                Login.this.startActivity(gotoRegister);
+            }
+        });
+
+        EditText passwordText = (EditText) findViewById(R.id.Password_Field);
+        passwordText.setOnKeyListener(this);
 
         /*
         login.setOnClickListener(new View.OnClickListener() {
@@ -79,27 +93,28 @@ public class Login extends AppCompatActivity {
                 }
             }
         };
-        login.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    startSignIn();
-                    //Intent goToMain = new Intent(Login.this, Main_Screen_Admin.class);
-                    //Intent goToMain2 = new Intent(Login.this, Main_Screen.class)
 
-                        //startActivity(goToMain2);
-
-                }
-        });
-        /*
-        createNewAccount = (Button)findViewById(R.id.createNewAccountButton);
-        createNewAccount.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Code here executes on main thread after user presses button
-                Intent goToMain = new Intent(Login.this, CreateNewAccount.class);
-                startActivity(goToMain);
-            }
-        });
-        */
     }
+
+    @Override
+    public boolean onKey(View view, int keyCode, KeyEvent event) {
+        EditText passwordText = (EditText) findViewById(R.id.Password_Field);
+
+        if (keyCode == EditorInfo.IME_ACTION_SEARCH ||
+                keyCode == EditorInfo.IME_ACTION_DONE ||
+                event.getAction() == KeyEvent.ACTION_DOWN &&
+                        event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+
+            if (!event.isShiftPressed()) {
+                startSignIn();
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
     protected void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(logInAuthListner);
@@ -111,19 +126,22 @@ public class Login extends AppCompatActivity {
         //user.setUsername = loginString.getText().toString();
         String passwordString2 = passwordString.getText().toString();;
 
-
         if (TextUtils.isEmpty(loginString2) || TextUtils.isEmpty(passwordString2)) {
             Toast.makeText(Login.this, "Fields are empty", Toast.LENGTH_LONG).show();
-        }
-        else{
+        } else {
             mAuth.signInWithEmailAndPassword(loginString2, passwordString2).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (!task.isSuccessful()) {
                         Toast.makeText(Login.this, "Sign in Problem", Toast.LENGTH_LONG).show();
+                    } else {
+                        Intent gotoMain = new Intent(Login.this, Main_Screen.class);
+                        Login.this.startActivity(gotoMain);
                     }
                 }
             });
+
+
         }
     }
 
