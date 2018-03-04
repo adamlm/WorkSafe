@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +15,21 @@ public class Main_Screen extends AppCompatActivity {
     ListView list;
     Button settings;
     Button newIssue;
+
+
     private List<String> List_file;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main__screen);
+        Button logout = (Button) findViewById(R.id.logoutBtn);
+        logout.setOnClickListener(new View.OnClickListener() {           //Sets an onClickListener to make button click for intent
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent myIntent = new Intent(Main_Screen.this, Login.class);
+                Main_Screen.this.startActivity(myIntent);
+            }
+        });
         List_file = new ArrayList<String>();
         list = (ListView)findViewById(R.id.existingIssuesList);
         CreateListView();
