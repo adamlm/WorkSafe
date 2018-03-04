@@ -34,9 +34,6 @@ public class Login extends AppCompatActivity implements View.OnKeyListener{
     public static ArrayList<Employee> employeeAccounts;
     public static ArrayList<Complaint> allComplaints;
 
-    public Login() {
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -7,11 +7,27 @@
     tools:context="com.worksafe.disruptthedistrict.worksafe.changeEmail"
     android:background="@drawable/gradient1">
 
-    <!-- Load the toolbar here -->
-    <include
-        layout="@layout/toolbar_main"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="?attr/colorPrimary">
+    </android.support.v7.widget.Toolbar>
+
+    <Button
+        android:id="@+id/email_submit"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="1dp"
+        android:background="@mipmap/ic_done_white_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.973"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.00999999" />
 
     <EditText
         android:id="@+id/currentEmailField"
@@ -56,14 +72,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.561" />
 
-    <Button
-        android:id="@+id/updateEmailButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.792" />
 </android.support.constraint.ConstraintLayout>

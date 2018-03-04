@@ -12,9 +12,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class CreateNewAccount extends AppCompatActivity {
@@ -37,26 +40,27 @@ public class CreateNewAccount extends AppCompatActivity {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
 
-
-                String name = ((EditText)findViewById(R.id.newAcc_Name)).toString();
+                String firstName = ((EditText)findViewById(R.id.newAcc_FirstName)).toString();
+                String lastName = ((EditText)findViewById(R.id.newAcc_LastName)).toString();
                 String email = ((EditText)findViewById(R.id.newAcc_Email)).toString();
                 String password = ((EditText)findViewById(R.id.newAcc_Password)).toString();;
-                boolean isAdmin = ((CheckBox)findViewById(R.id.isAdminCheckBox)).isChecked();
-                String company = ((EditText)findViewById(R.id.CompanyNameBox)).toString();
 
-                if(isAdmin){
-                    Admin newAdmin = new Admin(name, email, password, company);
-                    Login.adminAccounts.add(newAdmin);
-                    Login.companies.add(company);
-                }
-                else{
-                    Employee newEmployee = new Employee(name, email, password, company);
-                    Login.employeeAccounts.add(newEmployee);
-                    Login.companies.add(company);
-                }
+                if(firstName.equals(null) || lastName.equals(null) || email.equals(null)
+                        || password.equals(null)) {
+                    Toast.makeText(CreateNewAccount.this,
+                            "Please fill out all fields.", Toast.LENGTH_LONG).show();
+                } else {
+                    //DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
+                    //DataSnapshot snapshot = userRef.;
+                    //snapshot.child("users").getChildrenCount() + 1;
+                    //int userId = userRef.getch
+                    //fbDb = FirebaseDatabase.getInstance().getReference();
 
-                Intent goMainScreen = new Intent(CreateNewAccount.this, Main_Screen.class);
-                startActivity(goMainScreen);
+                    User user = new User(5, firstName, lastName, email, password, false);
+
+                    Intent goMainScreen = new Intent(CreateNewAccount.this, Main_Screen.class);
+                    startActivity(goMainScreen);
+                }
             }
         });
 

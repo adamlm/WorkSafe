@@ -16,8 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main_Screen"
-            android:label="My Activity Title" />
+        <activity android:name=".Main_Screen"/>
         <activity android:name=".Submit_New_Issue" />
         <activity android:name=".Settings" />
         <activity android:name=".changeEmail" />
