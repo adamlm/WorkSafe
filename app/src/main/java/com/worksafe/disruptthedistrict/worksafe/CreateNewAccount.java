@@ -32,30 +32,15 @@ public class CreateNewAccount extends AppCompatActivity {
         toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.colorWhite),
                 PorterDuff.Mode.SRC_ATOP);
 
+        String name = ((EditText)findViewById(R.id.newAcc_Name)).toString();
+        String email = ((EditText)findViewById(R.id.newAcc_Email)).toString();
+        String password = ((EditText)findViewById(R.id.newAcc_Password)).toString();
         createNewAccount = (Button)findViewById(R.id.newAccountButton);
+
         createNewAccount.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-
-
-                String name = ((EditText)findViewById(R.id.newAcc_Name)).toString();
-                String email = ((EditText)findViewById(R.id.newAcc_Email)).toString();
-                String password = ((EditText)findViewById(R.id.newAcc_Password)).toString();;
-                boolean isAdmin = ((CheckBox)findViewById(R.id.isAdminCheckBox)).isChecked();
-                String company = ((EditText)findViewById(R.id.CompanyNameBox)).toString();
-
-                if(isAdmin){
-                    Admin newAdmin = new Admin(name, email, password, company);
-                    Login.adminAccounts.add(newAdmin);
-                    Login.companies.add(company);
-                }
-                else{
-                    Employee newEmployee = new Employee(name, email, password, company);
-                    Login.employeeAccounts.add(newEmployee);
-                    Login.companies.add(company);
-                }
-
-                Intent goMainScreen = new Intent(CreateNewAccount.this, Main_Screen.class);
+                Intent goMainScreen = new Intent(CreateNewAccount.this, Login.class);
                 startActivity(goMainScreen);
             }
         });
