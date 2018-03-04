@@ -1,12 +1,16 @@
 package com.worksafe.disruptthedistrict.worksafe;
 
 import android.content.Intent;
+<<<<<<< HEAD
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+=======
+>>>>>>> 619ce9f1efd9931d6f8404e12128e95e72ba5ec0
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+<<<<<<< HEAD
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -14,12 +18,16 @@ public class CreateNewAccount extends AppCompatActivity {
     Button createNewAccount;
     private FirebaseAuth auth;
 
+=======
+>>>>>>> 619ce9f1efd9931d6f8404e12128e95e72ba5ec0
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_account);
+<<<<<<< HEAD
         auth = FirebaseAuth.getInstance();
+=======
+>>>>>>> 619ce9f1efd9931d6f8404e12128e95e72ba5ec0
         createNewAccount = (Button)findViewById(R.id.newAccountButton);
         createNewAccount.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -49,4 +57,7 @@ public class CreateNewAccount extends AppCompatActivity {
         });
 
     }
+<<<<<<< HEAD
+=======
+>>>>>>> 619ce9f1efd9931d6f8404e12128e95e72ba5ec0
 }

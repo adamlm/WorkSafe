@@ -7,11 +7,14 @@
     android:windowSoftInputMode="adjustPan|stateHidden"
     tools:context="com.worksafe.disruptthedistrict.worksafe.CreateNewAccount">
 
-    <!-- Load the toolbar here -->
-    <include
-        layout="@layout/toolbar_main"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="?attr/colorPrimary">
+    </android.support.v7.widget.Toolbar>
 
     <EditText
         android:id="@+id/newAcc_Name"
