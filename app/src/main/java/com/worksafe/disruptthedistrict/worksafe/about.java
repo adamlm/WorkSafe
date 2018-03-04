@@ -15,11 +15,13 @@ public class about extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("About");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.colorWhite),
                 PorterDuff.Mode.SRC_ATOP);
+
 
     }
 
