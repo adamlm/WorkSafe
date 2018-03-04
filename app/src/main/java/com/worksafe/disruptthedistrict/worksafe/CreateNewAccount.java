@@ -1,24 +1,37 @@
 package com.worksafe.disruptthedistrict.worksafe;
 
 import android.content.Intent;
+import android.media.Image;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 
 
-public class CreateNewAccount extends AppCompatActivity {
-    Button createNewAccount;
+public class CreateNewAccount extends AppCompatActivity implements View.OnClickListener {
+    ImageButton createNewAccount;
+    private EditText email;
+    private EditText name;
+    private EditText password;
+    private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,27 +39,61 @@ public class CreateNewAccount extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Register Account");
+        auth = FirebaseAuth.getInstance();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.colorWhite),
                 PorterDuff.Mode.SRC_ATOP);
 
-        String name = ((EditText)findViewById(R.id.newAcc_Name)).toString();
-        String email = ((EditText)findViewById(R.id.newAcc_Email)).toString();
-        String password = ((EditText)findViewById(R.id.newAcc_Password)).toString();
-        createNewAccount = (Button)findViewById(R.id.newAccountButton);
+        name = ((EditText)findViewById(R.id.newAcc_Name));
+        email = ((EditText)findViewById(R.id.newAcc_Email));
+        password = ((EditText)findViewById(R.id.newAcc_Password));
+        createNewAccount = (ImageButton)findViewById(R.id.register_butt);
+        createNewAccount.setOnClickListener(this);
 
-        createNewAccount.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Code here executes on main thread after user presses button
-                Intent goMainScreen = new Intent(CreateNewAccount.this, Login.class);
-                startActivity(goMainScreen);
-            }
-        });
+
 
     }
-    @Override
+
+    private void registerUser() {
+        String stringemail = email.getText().toString().trim();
+        String stringpassword = password.getText().toString().trim();
+
+        if (TextUtils.isEmpty(stringemail) || TextUtils.isEmpty(stringpassword)) {
+            Toast.makeText(CreateNewAccount.this, "Please enter both the email and the password.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        auth.createUserWithEmailAndPassword(stringemail,stringpassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    //User registration successful
+                    //move to homepage
+                    Toast.makeText(CreateNewAccount.this, "Registering...", Toast.LENGTH_LONG).show();
+                    Intent registeredIntent = new Intent(CreateNewAccount.this, Login.class);
+                    CreateNewAccount.this.startActivity(registeredIntent);
+                } else {
+                    Toast.makeText(CreateNewAccount.this, "Could not register, please try again.", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    public void onClick(View view) {
+        if (view == createNewAccount) {
+            registerUser();
+        }
+        else {
+            // Intent to open the login activity.
+            Intent loginIntent = new Intent(CreateNewAccount.this, Login.class);
+            // Request for RegisterActivity to open the activity via the above intent.
+            CreateNewAccount.this.startActivity(loginIntent);
+        }
+
+
+    }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
