@@ -96,7 +96,9 @@ public class Login extends AppCompatActivity implements View.OnKeyListener{
     }
 
     private void startSignIn() {
-        String loginString2 = loginString.getText().toString();
+        String loginString2 = loginString.getText().toString();;
+        //User user = new User(0,"","", true);
+        //user.setUsername = loginString.getText().toString();
         String passwordString2 = passwordString.getText().toString();;
 
         if (TextUtils.isEmpty(loginString2) || TextUtils.isEmpty(passwordString2)) {
