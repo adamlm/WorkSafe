@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">WorkSafe</string>
+
+    <!-- Settings Options -->
+    <string name="change_email">Change Email</string>
+    <string name="change_password">Change Password</string>
+    <string name="about">About</string>
+    <string name="settings">Settings</string>
+
+    <!-- Activity Titles -->
+    <string name="title_about_activity">About</string>
+    <string name="title_change_email_activity">Change Email</string>
+    <string name="title_change_password_activity">Change Password</string>
+    <string name="title_create_account_activity">Create Account</string>
+    <string name="title_login_activity">Login</string>
+    <string name="title_main_screen_activity">Issue Feed</string>
+    <string name="title_main_screen_admin_activity">Issue Feed - Admin</string>
+    <string name="title_settings_activity">Settings</string>
+    <string name="title_submit_new_issue_activity">Submit New Issue</string>
+
+    <!-- Hints -->
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_first_name">First Name</string>
+    <string name="hint_last_name">Last Name</string>
+
+    <string name="create_account">Create Account</string>
 </resources>
+
+
+

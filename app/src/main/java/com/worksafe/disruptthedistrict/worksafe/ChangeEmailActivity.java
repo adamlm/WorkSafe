@@ -1,11 +1,9 @@
 package com.worksafe.disruptthedistrict.worksafe;
 
-import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class changeEmail extends AppCompatActivity {
+public class ChangeEmailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +23,7 @@ public class changeEmail extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Change Email");
+//        getSupportActionBar().setTitle("Change Email");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -46,7 +44,7 @@ public class changeEmail extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot snapshot) {
                         ((EditText)findViewById(R.id.currentEmailField))
-                                .setText(snapshot.child(Long.toString(Login.appUser.getUserId()))
+                                .setText(snapshot.child(Long.toString(LoginActivity.appUser.getUserId()))
                                         .child("username").getValue().toString());
 
                         ((EditText)findViewById(R.id.currentEmailField))
@@ -73,7 +71,7 @@ public class changeEmail extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main_screen, menu);
         return true;
     }
 

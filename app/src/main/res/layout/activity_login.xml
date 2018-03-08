@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient1"
-    tools:context="com.worksafe.disruptthedistrict.worksafe.Login"
+    tools:context="com.worksafe.disruptthedistrict.worksafe.LoginActivity"
     tools:layout_editor_absoluteY="81dp">
 
     <ImageView
@@ -36,12 +36,12 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/Email_field"
+                android:id="@+id/field_email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
                 android:ems="10"
-                android:hint="Email"
+                android:hint="@string/hint_email"
                 android:inputType="textEmailAddress" />
         </LinearLayout>
 
@@ -51,14 +51,13 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/Password_Field"
+                android:id="@+id/field_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
                 android:ems="10"
-                android:hint="Password"
+                android:hint="@string/hint_password"
                 android:inputType="textPassword" />
-
         </LinearLayout>
     </LinearLayout>
 
@@ -66,7 +65,7 @@
         android:id="@+id/registerAccountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register Account"
+        android:text="@string/create_account"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"

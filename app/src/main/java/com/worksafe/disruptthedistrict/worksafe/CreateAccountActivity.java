@@ -1,36 +1,27 @@
 package com.worksafe.disruptthedistrict.worksafe;
 
 import android.content.Intent;
-import android.media.Image;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.graphics.PorterDuff;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 
-public class CreateNewAccount extends AppCompatActivity implements View.OnClickListener {
+public class CreateAccountActivity extends AppCompatActivity implements View.OnClickListener {
     Button createNewAccount;
     private EditText email;
     private EditText name;
@@ -40,19 +31,29 @@ public class CreateNewAccount extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_new_account);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_create_account);
+
+        // Create Toolbar for Activity
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Register Account");
+        toolbar.setOverflowIcon(
+                getResources().getDrawable(R.drawable.ic_more_vert_white_24dp));
+
+        // Enable the back button in the Toolbar
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        }
+
+
         auth = FirebaseAuth.getInstance();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.colorWhite),
-                PorterDuff.Mode.SRC_ATOP);
 
-        name = ((EditText)findViewById(R.id.newAcc_Name));
-        email = ((EditText)findViewById(R.id.newAcc_Email));
+
+
+        name = ((EditText)findViewById(R.id.field_first_name));
+        email = ((EditText)findViewById(R.id.field_email));
         password = ((EditText)findViewById(R.id.newAcc_Password));
         createNewAccount = (Button)findViewById(R.id.register_butt);
         createNewAccount.setOnClickListener(this);
@@ -66,7 +67,7 @@ public class CreateNewAccount extends AppCompatActivity implements View.OnClickL
         String stringpassword = password.getText().toString().trim();
 
         if (TextUtils.isEmpty(stringemail) || TextUtils.isEmpty(stringpassword)) {
-            Toast.makeText(CreateNewAccount.this, "Please enter both the email and the password.", Toast.LENGTH_LONG).show();
+            Toast.makeText(CreateAccountActivity.this, "Please enter both the email and the password.", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -76,17 +77,17 @@ public class CreateNewAccount extends AppCompatActivity implements View.OnClickL
                 if (task.isSuccessful()) {
                     //User registration successful
                     //move to homepage
-                    Login.appUser = new User(System.currentTimeMillis(), name.toString(), name.toString(), email.toString(),
+                    LoginActivity.appUser = new User(System.currentTimeMillis(), name.toString(), name.toString(), email.toString(),
                             password.toString(), false, null);
 
                     DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
-                    database.child(Long.toString(Login.appUser.getUserId())).setValue(Login.appUser);
+                    database.child(Long.toString(LoginActivity.appUser.getUserId())).setValue(LoginActivity.appUser);
 
-                    Toast.makeText(CreateNewAccount.this, "Registering...", Toast.LENGTH_LONG).show();
-                    Intent registeredIntent = new Intent(CreateNewAccount.this, Main_Screen.class);
-                    CreateNewAccount.this.startActivity(registeredIntent);
+                    Toast.makeText(CreateAccountActivity.this, "Registering...", Toast.LENGTH_LONG).show();
+                    Intent registeredIntent = new Intent(CreateAccountActivity.this, MainScreenActivity.class);
+                    CreateAccountActivity.this.startActivity(registeredIntent);
                 } else {
-                    Toast.makeText(CreateNewAccount.this, "Could not register, please try again.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CreateAccountActivity.this, "Could not register, please try again.", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -98,15 +99,15 @@ public class CreateNewAccount extends AppCompatActivity implements View.OnClickL
         }
         else {
             // Intent to open the login activity.
-            Intent loginIntent = new Intent(CreateNewAccount.this, Login.class);
+            Intent loginIntent = new Intent(CreateAccountActivity.this, LoginActivity.class);
             // Request for RegisterActivity to open the activity via the above intent.
-            CreateNewAccount.this.startActivity(loginIntent);
+            CreateAccountActivity.this.startActivity(loginIntent);
         }
 
 
     }
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main_screen, menu);
         return true;
     }
 

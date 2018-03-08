@@ -1,7 +1,6 @@
 package com.worksafe.disruptthedistrict.worksafe;
 
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,18 +10,18 @@ import android.widget.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main_Screen_Admin extends AppCompatActivity {
+public class MainScreenAdminActivity extends AppCompatActivity {
     ListView list;
     Button options;
     private List<String> List_file;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main__screen__admin);
+        setContentView(R.layout.activity_main_screen_admin);
 
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Issue Feed - Admin");
+//        getSupportActionBar().setTitle("Issue Feed - Admin");
         toolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
 
         List_file = new ArrayList<String>();
@@ -36,26 +35,26 @@ public class Main_Screen_Admin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Creating the instance of PopupMenu
-                PopupMenu popup = new PopupMenu(Main_Screen_Admin.this, options);
+                PopupMenu popup = new PopupMenu(MainScreenAdminActivity.this, options);
                 //Inflating the Popup using xml file
-                popup.getMenuInflater().inflate(R.menu.settings_menu, popup.getMenu());
+                popup.getMenuInflater().inflate(R.menu.menu_settings, popup.getMenu());
 
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
                         if(item.getTitle().toString().equals("Change Email")){
-                            Intent goChangeEmail = new Intent(Main_Screen_Admin.this, changeEmail.class);
+                            Intent goChangeEmail = new Intent(MainScreenAdminActivity.this, ChangeEmailActivity.class);
                             startActivity(goChangeEmail);
                         }
                         else if(item.getTitle().toString().equals("Change Password")){
-                            Intent goChangePassword = new Intent(Main_Screen_Admin.this, changePassword.class);
+                            Intent goChangePassword = new Intent(MainScreenAdminActivity.this, ChangePasswordActivity.class);
                             startActivity(goChangePassword);
                         }
                         else if(item.getTitle().toString().equals("About")){
-                            Intent goAbout = new Intent(Main_Screen_Admin.this, about.class);
+                            Intent goAbout = new Intent(MainScreenAdminActivity.this, AboutActivity.class);
                             startActivity(goAbout);
                         }
-                        //Toast.makeText(Main_Screen.this,"You Clicked : " + item.getTitle(),Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainScreenActivity.this,"You Clicked : " + item.getTitle(),Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 });
@@ -67,8 +66,8 @@ public class Main_Screen_Admin extends AppCompatActivity {
     private void CreateListView()
     {
         //Here is where we will connect to the data to retrieve old submitted issues
-        for(int i = 0; i < Login.allComplaints.size(); i++){
-            //List_file.add(Login.allComplaints.get(i).getComplaintDetails() + "          " + Login.temp.getComplaint(i).getStatus());
+        for(int i = 0; i < LoginActivity.allComplaints.size(); i++){
+            //List_file.add(LoginActivity.allComplaints.get(i).getComplaintDetails() + "          " + LoginActivity.temp.getComplaint(i).getStatus());
         }
         /*
         List_file.add("Coderzheaven           " + "In Progress" );
@@ -89,7 +88,7 @@ public class Main_Screen_Admin extends AppCompatActivity {
 
 
         //Create an adapter for the listView and add the ArrayList to the adapter.
-        list.setAdapter(new ArrayAdapter<String>(Main_Screen_Admin.this, android.R.layout.simple_list_item_1,List_file));
+        list.setAdapter(new ArrayAdapter<String>(MainScreenAdminActivity.this, android.R.layout.simple_list_item_1,List_file));
         /*
         list.setOnItemClickListener(new OnItemClickListener()
         {

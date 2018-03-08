@@ -9,21 +9,41 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login">
+
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main_Screen"/>
-        <activity android:name=".Submit_New_Issue" />
-        <activity android:name=".Settings" />
-        <activity android:name=".changeEmail" />
-        <activity android:name=".changePassword" />
-        <activity android:name=".about" />
-        <activity android:name=".CreateNewAccount" />
-        <activity android:name=".Main_Screen_Admin" />
+
+        <activity android:name=".MainScreenActivity"
+            android:label="@string/title_main_screen_activity"/>
+
+        <activity android:name=".SubmitNewIssueActivity"
+            android:label="@string/title_submit_new_issue_activity"/>
+
+        <activity android:name=".SettingsActivity"
+            android:label="@string/title_settings_activity"/>
+
+        <activity android:name=".ChangeEmailActivity"
+            android:label="@string/title_change_email_activity"/>
+
+        <activity android:name=".ChangePasswordActivity"
+            android:label="@string/title_change_password_activity"/>
+
+        <activity android:name=".AboutActivity"
+            android:label="@string/title_about_activity"
+            android:parentActivityName=".MainScreenActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity android:name=".CreateAccountActivity"
+            android:label="@string/title_create_account_activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity android:name=".MainScreenAdminActivity"
+            android:label="@string/title_main_screen_admin_activity"/>
     </application>
 
 </manifest>

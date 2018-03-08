@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
-public class changePassword extends AppCompatActivity {
+public class ChangePasswordActivity extends AppCompatActivity {
     Button updatePassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,7 @@ public class changePassword extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Change Password");
+//        getSupportActionBar().setTitle("Change Password");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -28,7 +28,7 @@ public class changePassword extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                //Intent goToSettings = new Intent(Submit_New_Issue.this, Submit_New_Issue.class);
+                //Intent goToSettings = new Intent(SubmitNewIssueActivity.this, SubmitNewIssueActivity.class);
                 //startActivity(goToSettings);
             }
         });
@@ -36,7 +36,7 @@ public class changePassword extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main_screen, menu);
         return true;
     }
 

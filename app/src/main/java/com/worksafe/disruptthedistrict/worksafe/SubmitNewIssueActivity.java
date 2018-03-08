@@ -10,19 +10,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
-public class Submit_New_Issue extends AppCompatActivity {
+public class SubmitNewIssueActivity extends AppCompatActivity {
     Button submitComplaint;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_submit__new__issue);
+        setContentView(R.layout.activity_submit_new_issue);
 
         // Create toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Create New Issue");
+//        getSupportActionBar().setTitle("Create New Issue");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -41,9 +40,9 @@ public class Submit_New_Issue extends AppCompatActivity {
                 String details = ((EditText) findViewById(R.id.complaintComments)).getText().toString();
 
                 Complaint complaint = new Complaint(sexualAssault, racialComments, verbalAbuse, physicalAbuse, details);
-                Login.appUser.addComplaint(complaint);
+                LoginActivity.appUser.addComplaint(complaint);
 
-                Intent returnToMain = new Intent(Submit_New_Issue.this, Main_Screen.class);
+                Intent returnToMain = new Intent(SubmitNewIssueActivity.this, MainScreenActivity.class);
                 startActivity(returnToMain);
             }
         });
@@ -51,7 +50,7 @@ public class Submit_New_Issue extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main_screen, menu);
         return true;
     }
 

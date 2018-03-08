@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.worksafe.disruptthedistrict.worksafe.Settings"
+    tools:context="com.worksafe.disruptthedistrict.worksafe.SettingsActivity"
     android:background="@drawable/gradient1">
 
     <Button

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient1"
-    tools:context="com.worksafe.disruptthedistrict.worksafe.Submit_New_Issue"
+    tools:context="com.worksafe.disruptthedistrict.worksafe.SubmitNewIssueActivity"
     tools:layout_editor_absoluteY="81dp">
 
     <android.support.v7.widget.Toolbar

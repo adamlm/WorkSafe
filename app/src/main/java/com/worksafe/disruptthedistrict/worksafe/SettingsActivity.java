@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Settings extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
     Button changeEmail, changePassword, about;
 
 
@@ -19,7 +19,7 @@ public class Settings extends AppCompatActivity {
         changeEmail.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                Intent goChangeEmail = new Intent(Settings.this, changeEmail.class);
+                Intent goChangeEmail = new Intent(SettingsActivity.this, ChangeEmailActivity.class);
                 startActivity(goChangeEmail);
             }
         });
@@ -28,7 +28,7 @@ public class Settings extends AppCompatActivity {
         changePassword.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                Intent goChangePassword = new Intent(Settings.this, changePassword.class);
+                Intent goChangePassword = new Intent(SettingsActivity.this, ChangePasswordActivity.class);
                 startActivity(goChangePassword);
             }
         });
@@ -37,7 +37,7 @@ public class Settings extends AppCompatActivity {
         about.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                Intent goAbout = new Intent(Settings.this, about.class);
+                Intent goAbout = new Intent(SettingsActivity.this, AboutActivity.class);
                 startActivity(goAbout);
             }
         });

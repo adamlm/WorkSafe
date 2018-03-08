@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.*;
 import android.view.*;
 import android.view.inputmethod.EditorInfo;
@@ -19,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class Login extends AppCompatActivity implements View.OnKeyListener{
+public class LoginActivity extends AppCompatActivity implements View.OnKeyListener{
     static User appUser;
 
     Button login;
@@ -43,22 +42,26 @@ public class Login extends AppCompatActivity implements View.OnKeyListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Sign out of previous account
         FirebaseAuth.getInstance().signOut();
 
-        loginString = (EditText) findViewById(R.id.Email_field);
-        passwordString = (EditText) findViewById(R.id.Password_Field);
+         loginString = findViewById(R.id.field_email);
+        passwordString = findViewById(R.id.field_password);
         //login = (Button)findViewById(R.id.Login_button);
 
         TextView register = (TextView) findViewById(R.id.registerAccountText);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent gotoRegister = new Intent(Login.this, CreateNewAccount.class);
-                Login.this.startActivity(gotoRegister);
+                Intent gotoMain = new Intent(LoginActivity.this, MainScreenActivity.class);
+                startActivity(gotoMain);
+
+//                Intent gotoRegister = new Intent(LoginActivity.this, CreateAccountActivity.class);
+//                LoginActivity.this.startActivity(gotoRegister);
             }
         });
 
-        EditText passwordText = (EditText) findViewById(R.id.Password_Field);
+        EditText passwordText = (EditText) findViewById(R.id.field_password);
         passwordText.setOnKeyListener(this);
         mAuth = FirebaseAuth.getInstance();
 
@@ -67,7 +70,7 @@ public class Login extends AppCompatActivity implements View.OnKeyListener{
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
                 if (firebaseAuth.getCurrentUser() != null) {
-                    startActivity(new Intent(Login.this, Main_Screen.class));
+                    startActivity(new Intent(LoginActivity.this, MainScreenActivity.class));
                 }
             }
         };
@@ -76,7 +79,7 @@ public class Login extends AppCompatActivity implements View.OnKeyListener{
 
     @Override
     public boolean onKey(View view, int keyCode, KeyEvent event) {
-        EditText passwordText = (EditText) findViewById(R.id.Password_Field);
+        EditText passwordText = (EditText) findViewById(R.id.field_password);
 
         if (keyCode == EditorInfo.IME_ACTION_SEARCH ||
                 keyCode == EditorInfo.IME_ACTION_DONE ||
@@ -93,31 +96,32 @@ public class Login extends AppCompatActivity implements View.OnKeyListener{
         return false;
     }
 
+    @Override
     protected void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(logInAuthListner);
     }
 
     private void startSignIn() {
-        final String loginString2 = loginString.getText().toString();;
+        final String loginString2 = loginString.getText().toString();
         //User user = new User(0,"","", true);
         //user.setUsername = loginString.getText().toString();
         String passwordString2 = passwordString.getText().toString();;
 
         if (TextUtils.isEmpty(loginString2) || TextUtils.isEmpty(passwordString2)) {
-            Toast.makeText(Login.this, "Fields are empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginActivity.this, "Fields are empty", Toast.LENGTH_LONG).show();
         } else {
             mAuth.signInWithEmailAndPassword(loginString2, passwordString2).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (!task.isSuccessful()) {
-                        Toast.makeText(Login.this, "Sign in Problem", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Sign in Problem", Toast.LENGTH_LONG).show();
                     } else {
                         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("user");
 
-                        //Login.appUser = databaseReference.child(loginString);
-                        Intent gotoMain = new Intent(Login.this, Main_Screen.class);
-                        Login.this.startActivity(gotoMain);
+                        //LoginActivity.appUser = databaseReference.child(loginString);
+                        Intent gotoMain = new Intent(LoginActivity.this, MainScreenActivity.class);
+                        LoginActivity.this.startActivity(gotoMain);
                     }
                 }
             });
@@ -125,7 +129,4 @@ public class Login extends AppCompatActivity implements View.OnKeyListener{
 
         }
     }
-
-
-
 }
